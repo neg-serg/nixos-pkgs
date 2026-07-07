@@ -1,6 +1,6 @@
 inputs: _final: prev:
 let
-  packagesRoot = ./packages;
+  packagesRoot = ../packages;
   callPkg =
     path: extraArgs:
     let
@@ -65,22 +65,5 @@ in
 
     # OpenAgentsControl — AI agent framework for plan-first development (agents + contexts for OpenCode)
     openagentscontrol = callPkg (packagesRoot + "/openagentscontrol") { };
-
-    # ncpamixer with custom config
-    ncpamixer-wrapped =
-      let
-        ncpaConfig = prev.writeText "ncpamixer.conf" (
-          builtins.readFile (./files/gui/ncpamixer.conf)
-        );
-      in
-      prev.symlinkJoin {
-        name = "ncpamixer-wrapped";
-        paths = [ prev.ncpamixer ];
-        buildInputs = [ prev.makeWrapper ];
-        postBuild = ''
-          wrapProgram $out/bin/ncpamixer \
-            --add-flags "-c ${ncpaConfig}"
-        '';
-      };
   };
 }

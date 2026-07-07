@@ -20,17 +20,15 @@ in
   # Avoid pulling hyprland-qtutils into Hyprland runtime closure
   # Some downstream overlays add qtutils to PATH wrapping; disable that.
   hyprland = prev.hyprland.override { wrapRuntimeDeps = false; };
-  andromeda-gtk-theme = callPkg (./packages/andromeda-gtk-theme) { };
-  flight-gtk-theme = callPkg (./packages/flight-gtk-theme) { };
-  matugen-themes = callPkg (./packages/matugen-themes) { };
-  oldschool-pc-font-pack = callPkg (./packages/oldschool-pc-font-pack) { };
-  surfingkeys-pkg = prev.callPackage (./packages/surfingkeys-conf) {
-    customConfig = ./files/surfingkeys.js;
+  andromeda-gtk-theme = callPkg (../packages/andromeda-gtk-theme) { };
+  flight-gtk-theme = callPkg (../packages/flight-gtk-theme) { };
+  matugen-themes = callPkg (../packages/matugen-themes) { };
+  oldschool-pc-font-pack = callPkg (../packages/oldschool-pc-font-pack) { };
+  surfingkeys-pkg = prev.callPackage (../packages/surfingkeys-conf) {
+    customConfig = ../files/surfingkeys.js;
   };
-  wl = callPkg (./packages/wl) { };
-  zen-browser = inputs.zen-browser.packages.${prev.stdenv.hostPlatform.system}.default; # Zen Browser (Firefox-based), beta channel from zen-browser flake
-
-  gituserchrome = callPkg (./packages/gituserchrome) { }; # Cross-platform tool for git userChrome themes
+  wl = callPkg (../packages/wl) { };
+  gituserchrome = callPkg (../packages/gituserchrome) { }; # Cross-platform tool for git userChrome themes
 
   # Fix GSettings schema lookup and GTK wrapping for PipeWire graph GUI
   crosspipe = prev.crosspipe.overrideAttrs (old: {
@@ -38,12 +36,12 @@ in
     buildInputs = (old.buildInputs or [ ]) ++ [ prev.dconf ];
   });
 
-  skwd = prev.callPackage (./packages/skwd) {
+  skwd = prev.callPackage (../packages/skwd) {
     skwd-src = inputs.skwd;
     skwd-daemon = inputs.skwd-daemon.packages.${prev.stdenv.hostPlatform.system}.default;
   };
 
-  exo = prev.callPackage (./packages/exo) {
+  exo = prev.callPackage (../packages/exo) {
     exo-src = inputs.exo;
   };
 }

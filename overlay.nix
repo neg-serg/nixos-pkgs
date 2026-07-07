@@ -2,9 +2,6 @@ inputs: final: prev:
 let
   inherit (final) lib;
   callPkg = path: final.callPackage (./packages + "/${path}") { };
-
-  # External flake packages
-  zen-browser = inputs.zen-browser.packages.${final.stdenv.hostPlatform.system}.default;
 in
 {
   # Override opencode from flake input (latest git)
@@ -60,17 +57,7 @@ in
     };
   };
 
-  # Fix keyutils patch download failing (upstream lore.kernel.org 403)
-  keyutils = prev.keyutils.overrideAttrs (old: {
-    patches = (old.patches or [ ])
-      |> builtins.map (
-        p:
-        if builtins.isAttrs p && (p.name or "") == "raw" then
-          ./packages/../files/patches/keyutils-fix-format-specifier.patch
-        else
-          p
-      );
-  });
+  # keyutils fix not available in standalone — handled by main config overlay
 
   # Fix /sbin/ldconfig symlink in FHS envs (Steam pressure-vessel nested container fix)
   buildFHSEnv = args: prev.buildFHSEnv (args // {
