@@ -5,10 +5,6 @@
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
 
     # External flake-based packages
-    opencode = {
-      url = "github:anomalyco/opencode";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     skwd = {
       url = "github:liixini/skwd";
       flake = false;
@@ -32,10 +28,6 @@
     sqlit = {
       url = "github:Maxteabag/sqlit";
       inputs.nixpkgs.follows = "nixpkgs";
-    };
-    openagentscontrol = {
-      url = "github:darrenhinde/OpenAgentsControl";
-      flake = false;
     };
     wl = {
       url = "github:neg-serg/wl";

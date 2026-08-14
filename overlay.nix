@@ -4,16 +4,6 @@ let
   callPkg = path: final.callPackage (./packages + "/${path}") { };
 in
 {
-  # Override opencode from flake input (latest git)
-  opencode = (final.callPackage "${inputs.nixpkgs}/pkgs/by-name/op/opencode/package.nix" { }).overrideAttrs (old: {
-    src = inputs.opencode;
-    version = inputs.opencode.shortRev or "dev-${inputs.opencode.lastModifiedDate}";
-    node_modules = old.node_modules.overrideAttrs (nmOld: {
-      outputHash = "sha256-Z3ZDYxUHCcmEaYvl8qlKqkBGOPvZaKzTZ8fiXzbXm48=";
-      outputHashAlgo = "sha256";
-      outputHashMode = "recursive";
-    });
-  });
 
   # Merge all package categories into the neg namespace
   neg =
@@ -36,10 +26,6 @@ in
     // disableChecks
     // {
       rofi-config = final.callPackage ./packages/rofi-config { };
-      opencode-dev = (final.callPackage "${inputs.nixpkgs}/pkgs/by-name/op/opencode/package.nix" { }).overrideAttrs (old: {
-        src = inputs.opencode;
-        version = inputs.opencode.shortRev or "dev-${inputs.opencode.lastModifiedDate}";
-      });
       raysession = prev.raysession.overrideAttrs (old: {
         postPatch = (old.postPatch or "") + ''
           substituteInPlace src/gui/patchbay/patchcanvas/portgroup_widget.py \

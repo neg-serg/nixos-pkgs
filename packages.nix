@@ -12,7 +12,6 @@
   hdspeconf = pkgs.callPackage ./packages/hdspeconf { };
   matugen-themes = pkgs.callPackage ./packages/matugen-themes { };
   oldschool-pc-font-pack = pkgs.callPackage ./packages/oldschool-pc-font-pack { };
-  openagentscontrol = pkgs.callPackage ./packages/openagentscontrol { };
   palettum = pkgs.callPackage ./packages/palettum { };
   pretty-printer = pkgs.callPackage ./packages/pretty-printer { };
   proteinview = pkgs.callPackage ./packages/proteinview { };
