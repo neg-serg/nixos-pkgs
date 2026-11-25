@@ -2,7 +2,10 @@
   description = "neg-serg's custom NixOS packages";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    # Pinned to the revision /etc/nixos runs, so a standalone build here and the
+    # host build resolve to the same derivations. A consumer overrides it with
+    # `inputs.neg-pkgs.inputs.nixpkgs.follows = "nixpkgs"` (the host does).
+    nixpkgs.url = "github:NixOS/nixpkgs/2786a2a72088ecf32aea5b3ec52099e6a7cff78f";
 
     # External flake-based packages
     skwd = {

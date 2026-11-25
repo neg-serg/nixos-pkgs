@@ -2,8 +2,15 @@ inputs: final: prev:
 let
   inherit (final) lib;
   callPkg = path: final.callPackage (./packages + "/${path}") { };
+
+  # Packages moved here from /etc/nixos/packages/ (2026-11-25). They keep their
+  # attribute paths: `neg` names are merged below, the rest become top-level
+  # attributes — which this overlay never returned before, so every domain
+  # overlay's top-level entry was computed and dropped.
+  migrated = import ./overlays/migrated.nix { inherit inputs final prev; };
 in
-{
+migrated
+// {
 
   # Merge all package categories into the neg namespace
   neg =
@@ -32,7 +39,8 @@ in
             --replace-fail "from cgitb import text" ""
         '';
       });
-    };
+    }
+    // (migrated.neg or { });
 
   # Python with LTO optimizations
   python3-lto = prev.python3.override {
