@@ -64,6 +64,10 @@ in
   terrascope = pkgs.callPackage ./packages/terrascope { };
   tewi = pkgs.callPackage ./packages/tewi { };
   tmd-top = pkgs.callPackage ./packages/tmd-top { };
+  ttf-code2000 = pkgs.callPackage ./packages/ttf-code { variant = "ttf-code2000"; };
+  ttf-code2001 = pkgs.callPackage ./packages/ttf-code { variant = "ttf-code2001"; };
+  ttf-code2002 = pkgs.callPackage ./packages/ttf-code { variant = "ttf-code2002"; };
+  ttf-code20x3 = pkgs.callPackage ./packages/ttf-code { variant = "ttf-code20x3"; };
   topowall = rustSlim (pkgs.callPackage ./packages/topowall { });
   tuigram = pkgs.callPackage ./packages/tuigram { };
   uutils-sort = pkgs.callPackage ./packages/uutils-sort { };

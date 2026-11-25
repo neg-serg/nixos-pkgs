@@ -73,4 +73,8 @@ atrium = call "atrium" { }; # Wayland multiseat display manager
   swayimg = call "swayimg" { };
   tewi = call "tewi" { };
   tmd-top = call "tmd-top" { };
+  ttf-code2000 = call "ttf-code" { variant = "ttf-code2000"; }; # Code2000 shareware Unicode font (Basic Multilingual Plane)
+  ttf-code2001 = call "ttf-code" { variant = "ttf-code2001"; }; # Code2001 freeware font for Plane 1 (historic scripts)
+  ttf-code2002 = call "ttf-code" { variant = "ttf-code2002"; }; # Code2002 freeware font for Plane 2 (rare CJK)
+  ttf-code20x3 = call "ttf-code" { variant = "ttf-code20x3"; }; # Code20X3 freeware font for Plane 3 (CJK Ext G/H)
 }
