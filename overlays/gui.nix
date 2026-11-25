@@ -24,9 +24,6 @@ in
   flight-gtk-theme = callPkg (../packages/flight-gtk-theme) { };
   matugen-themes = callPkg (../packages/matugen-themes) { };
   oldschool-pc-font-pack = callPkg (../packages/oldschool-pc-font-pack) { };
-  surfingkeys-pkg = prev.callPackage (../packages/surfingkeys-conf) {
-    customConfig = ../files/surfingkeys.js;
-  };
   wl = callPkg (../packages/wl) { };
   gituserchrome = callPkg (../packages/gituserchrome) { }; # Cross-platform tool for git userChrome themes
 

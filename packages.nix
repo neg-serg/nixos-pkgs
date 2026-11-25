@@ -1,6 +1,6 @@
 # Auto-generated list of all vendored packages.
 # Each is available via the overlay and as `packages.<system>.<name>`.
-{ pkgs }: {
+{ pkgs, inputs }: {
   albumdetails = pkgs.callPackage ./packages/albumdetails { };
   andromeda-gtk-theme = pkgs.callPackage ./packages/andromeda-gtk-theme { };
   atrium = pkgs.callPackage ./packages/atrium { };
@@ -11,11 +11,10 @@
   craft-anything = pkgs.callPackage ./packages/craft-anything { };
   dnsglobe = pkgs.callPackage ./packages/dnsglobe { };
   duf = pkgs.callPackage ./packages/duf { };
-  exo = pkgs.callPackage ./packages/exo { };
+  exo = pkgs.callPackage ./packages/exo { exo-src = inputs.exo; };
   figcraft = pkgs.callPackage ./packages/figcraft { };
   flight-gtk-theme = pkgs.callPackage ./packages/flight-gtk-theme { };
   flow = pkgs.callPackage ./packages/flow { };
-  game-scripts = pkgs.callPackage ./packages/game-scripts { };
   geekbench-ai = pkgs.callPackage ./packages/geekbench-ai { };
   gituserchrome = pkgs.callPackage ./packages/gituserchrome { };
   hdspeconf = pkgs.callPackage ./packages/hdspeconf { };
@@ -42,16 +41,18 @@
   rofi-config = pkgs.callPackage ./packages/rofi-config { };
   rustgis = pkgs.callPackage ./packages/rustgis { };
   sidecar = pkgs.callPackage ./packages/sidecar { };
-  skwd = pkgs.callPackage ./packages/skwd { };
-  snd-hdspe = pkgs.callPackage ./packages/snd-hdspe { };
+  skwd = pkgs.callPackage ./packages/skwd {
+    skwd-src = inputs.skwd;
+    skwd-daemon = inputs.skwd-daemon.packages.${pkgs.stdenv.hostPlatform.system}.default;
+  };
+  snd-hdspe = pkgs.callPackage ./packages/snd-hdspe { kernel = pkgs.linuxPackages.kernel; };
   sola-mpd = pkgs.callPackage ./packages/sola-mpd { };
   solarust = pkgs.callPackage ./packages/solarust { };
   solidcraft = pkgs.callPackage ./packages/solidcraft { };
-  sqlit = pkgs.callPackage ./packages/sqlit { };
+  sqlit = pkgs.callPackage ./packages/sqlit { inherit inputs; };
   sqlitecpp = pkgs.callPackage ./packages/sqlitecpp { };
-  surfingkeys-conf = pkgs.callPackage ./packages/surfingkeys-conf { };
   swayimg = pkgs.callPackage ./packages/swayimg { };
-  talktype = pkgs.callPackage ./packages/talktype { };
+  talktype = pkgs.callPackage ./packages/talktype { inherit inputs; };
   termeverything = pkgs.callPackage ./packages/termeverything { };
   terrascope = pkgs.callPackage ./packages/terrascope { };
   tewi = pkgs.callPackage ./packages/tewi { };
@@ -61,6 +62,6 @@
   uutils-sort = pkgs.callPackage ./packages/uutils-sort { };
   waves = pkgs.callPackage ./packages/waves { };
   wiremix = pkgs.callPackage ./packages/wiremix { };
-  wl = pkgs.callPackage ./packages/wl { };
+  wl = pkgs.callPackage ./packages/wl { inherit inputs; };
   zsh-native-syntax = pkgs.callPackage ./packages/zsh-native-syntax { };
 }

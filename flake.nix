@@ -57,7 +57,7 @@
       };
     in
     {
-      packages = forAllSystems (system: import ./packages.nix { pkgs = mkPkgs system; });
+      packages = forAllSystems (system: import ./packages.nix { pkgs = mkPkgs system; inherit inputs; });
       overlays.default = import ./overlay.nix inputs;
       formatter = forAllSystems (system: nixpkgs.legacyPackages.${system}.nixfmt-rfc-style);
     };
