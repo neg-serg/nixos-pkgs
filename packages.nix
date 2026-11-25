@@ -21,6 +21,7 @@
   hypr-kdeconnect-fix = pkgs.callPackage ./packages/hypr-kdeconnect-fix { };
   hyprqt6engine = pkgs.callPackage ./packages/hyprqt6engine { };
   irori = pkgs.callPackage ./packages/irori { };
+  joern = pkgs.callPackage ./packages/joern { };
   linux-firmware-minimal = pkgs.callPackage ./packages/linux-firmware-minimal { };
   llama-cpp-inkling = pkgs.callPackage ./packages/llama-cpp-inkling { };
   lsfg-vk = pkgs.callPackage ./packages/lsfg-vk { };
@@ -49,6 +50,7 @@
   sola-mpd = pkgs.callPackage ./packages/sola-mpd { };
   solarust = pkgs.callPackage ./packages/solarust { };
   solidcraft = pkgs.callPackage ./packages/solidcraft { };
+  sonda = pkgs.callPackage ./packages/sonda { };
   sqlit = pkgs.callPackage ./packages/sqlit { inherit inputs; };
   sqlitecpp = pkgs.callPackage ./packages/sqlitecpp { };
   swayimg = pkgs.callPackage ./packages/swayimg { };
@@ -60,6 +62,8 @@
   topowall = pkgs.callPackage ./packages/topowall { };
   tuigram = pkgs.callPackage ./packages/tuigram { };
   uutils-sort = pkgs.callPackage ./packages/uutils-sort { };
+  vivaldi-fixed = pkgs.callPackage ./packages/vivaldi { };
+  vsncnn = pkgs.callPackage ./packages/vsncnn { };
   waves = pkgs.callPackage ./packages/waves { };
   wiremix = pkgs.callPackage ./packages/wiremix { };
   wl = pkgs.callPackage ./packages/wl { inherit inputs; };

@@ -19,6 +19,7 @@ let
 in
 {
   neg = {
+    joern = call "joern" { };
     dnsglobe = rustSlim (call "dnsglobe" { }); # Global DNS propagation checker TUI — record answers on a world map
     flow = call "flow" { }; # Terminal dashboard for real-time network throughput
     geekbench-ai = call "geekbench-ai" { }; # Geekbench AI — on-device inference benchmark (proprietary binary)
@@ -33,7 +34,23 @@ in
     uutils-sort = call "uutils-sort" { }; # uu_sort patched to compute ICU collation keys in parallel
   };
 
-  atrium = call "atrium" { }; # Wayland multiseat display manager
+  # Patched herdr (nixpkgs package plus the tab-appearance patches): the same
+  # override the host's tools overlay carried, with the patch paths relative to
+  # this file.
+  herdr = prev.herdr.overrideAttrs (old: {
+    patches = (old.patches or [ ]) ++ [
+      ../packages/herdr/patches/0001-ui-per-state-tab-colours-and-font-styles.patch
+      ../packages/herdr/patches/0002-ui-tab-title-templates-and-the-active-marker.patch
+      ../packages/herdr/patches/0003-docs-document-the-tab-appearance-keys.patch
+    ];
+  });
+
+  sonda = call "sonda" { }; # file manager for pleamar-wm that searches files by what they hold
+  vsncnn = call "vsncnn" { };
+  snd-hdspe = call "snd-hdspe" { kernel = prev.linuxPackages.kernel; };
+  vivaldi-fixed = call "vivaldi" { }; # patched Vivaldi build (wayland flags, bundled libffmpeg RUNPATH)
+
+atrium = call "atrium" { }; # Wayland multiseat display manager
   audio-cpp = call "audio-cpp" { };
   camillaeq = call "camillaeq" { };
   camillagui = call "camillagui" { }; # web GUI for CamillaDSP
