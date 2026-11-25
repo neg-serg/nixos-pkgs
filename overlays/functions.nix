@@ -2,6 +2,10 @@ _inputs: _final: prev: {
   # Shared helper functions under pkgs.neg.functions to DRY up overlay patterns
   neg = (prev.neg or { }) // {
     functions = {
+      # Shared builder for the ArtCraft desktop apps (figcraft, craft-anything,
+      # solidcraft): one egui/wgpu workspace shape, see lib/mkCraftApp.nix.
+      mkCraftApp = prev.callPackage ../lib/mkCraftApp.nix { };
+
       # Override the Python package scope with a function (self: super: { ... })
       # Usage in an overlay:
       #   python3Packages = pkgs.neg.functions.overridePyScope (self: super: {
