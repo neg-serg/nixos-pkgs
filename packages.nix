@@ -1,6 +1,11 @@
 # Auto-generated list of all vendored packages.
 # Each is available via the overlay and as `packages.<system>.<name>`.
-{ pkgs, inputs }: {
+{ pkgs, inputs }:
+let
+  # The same wrapper the overlay applies (rust-pkgs lib/slim.nix).
+  rustSlim = inputs.rust-pkgs.lib.slim;
+in
+{
   albumdetails = pkgs.callPackage ./packages/albumdetails { };
   andromeda-gtk-theme = pkgs.callPackage ./packages/andromeda-gtk-theme { };
   atrium = pkgs.callPackage ./packages/atrium { };
@@ -8,11 +13,11 @@
   brrtfetch = pkgs.callPackage ./packages/brrtfetch { };
   camillaeq = pkgs.callPackage ./packages/camillaeq { };
   camillagui = pkgs.callPackage ./packages/camillagui { };
-  craft-anything = pkgs.callPackage ./packages/craft-anything { };
-  dnsglobe = pkgs.callPackage ./packages/dnsglobe { };
+  craft-anything = rustSlim (pkgs.callPackage ./packages/craft-anything { });
+  dnsglobe = rustSlim (pkgs.callPackage ./packages/dnsglobe { });
   duf = pkgs.callPackage ./packages/duf { };
   exo = pkgs.callPackage ./packages/exo { exo-src = inputs.exo; };
-  figcraft = pkgs.callPackage ./packages/figcraft { };
+  figcraft = rustSlim (pkgs.callPackage ./packages/figcraft { });
   flight-gtk-theme = pkgs.callPackage ./packages/flight-gtk-theme { };
   flow = pkgs.callPackage ./packages/flow { };
   geekbench-ai = pkgs.callPackage ./packages/geekbench-ai { };
@@ -36,7 +41,7 @@
   pretty-printer = pkgs.callPackage ./packages/pretty-printer { };
   proteinview = pkgs.callPackage ./packages/proteinview { };
   proxypilot = pkgs.callPackage ./packages/proxypilot { };
-  pw-audioshare = pkgs.callPackage ./packages/pw-audioshare { };
+  pw-audioshare = rustSlim (pkgs.callPackage ./packages/pw-audioshare { });
   pycamilladsp = pkgs.callPackage ./packages/pycamilladsp { };
   pycamilladsp-plot = pkgs.callPackage ./packages/pycamilladsp-plot { };
   rofi-config = pkgs.callPackage ./packages/rofi-config { };
@@ -49,8 +54,8 @@
   snd-hdspe = pkgs.callPackage ./packages/snd-hdspe { kernel = pkgs.linuxPackages.kernel; };
   sola-mpd = pkgs.callPackage ./packages/sola-mpd { };
   solarust = pkgs.callPackage ./packages/solarust { };
-  solidcraft = pkgs.callPackage ./packages/solidcraft { };
-  sonda = pkgs.callPackage ./packages/sonda { };
+  solidcraft = rustSlim (pkgs.callPackage ./packages/solidcraft { });
+  sonda = rustSlim (pkgs.callPackage ./packages/sonda { });
   sqlit = pkgs.callPackage ./packages/sqlit { inherit inputs; };
   sqlitecpp = pkgs.callPackage ./packages/sqlitecpp { };
   swayimg = pkgs.callPackage ./packages/swayimg { };
@@ -59,7 +64,7 @@
   terrascope = pkgs.callPackage ./packages/terrascope { };
   tewi = pkgs.callPackage ./packages/tewi { };
   tmd-top = pkgs.callPackage ./packages/tmd-top { };
-  topowall = pkgs.callPackage ./packages/topowall { };
+  topowall = rustSlim (pkgs.callPackage ./packages/topowall { });
   tuigram = pkgs.callPackage ./packages/tuigram { };
   uutils-sort = pkgs.callPackage ./packages/uutils-sort { };
   vivaldi-fixed = pkgs.callPackage ./packages/vivaldi { };

@@ -45,7 +45,7 @@ in
     ];
   });
 
-  sonda = call "sonda" { }; # file manager for pleamar-wm that searches files by what they hold
+  sonda = rustSlim (call "sonda" { }); # file manager for pleamar-wm that searches files by what they hold
   vsncnn = call "vsncnn" { };
   snd-hdspe = call "snd-hdspe" { kernel = prev.linuxPackages.kernel; };
   vivaldi-fixed = call "vivaldi" { }; # patched Vivaldi build (wayland flags, bundled libffmpeg RUNPATH)
