@@ -26,7 +26,6 @@ migrated
       media = import ./overlays/media.nix inputs final prev;
       gui = import ./overlays/gui.nix inputs final prev;
       functions = import ./overlays/functions.nix inputs final prev;
-      fonts = import ./overlays/fonts.nix inputs final prev;
       aurPorted = import ./overlays/aur-ported.nix final prev;
       disableChecks = import ./overlays/disable-checks.nix inputs final prev;
     in
