@@ -11,6 +11,13 @@ let
 in
 migrated
 // {
+  # `lib.mkMeta` — the local packages' shared `meta` builder (lib/mkMeta.nix).
+  # The host extends its lib with the same function; extending here makes the
+  # moved package files evaluate unchanged.
+  lib = prev.lib.extend (_libFinal: _libPrev: {
+    mkMeta = final.callPackage ./lib/mkMeta.nix { };
+  });
+
 
   # Merge all package categories into the neg namespace
   neg =
