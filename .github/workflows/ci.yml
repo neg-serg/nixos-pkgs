@@ -1,0 +1,32 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+
+      - uses: cachix/install-nix-action@v31
+        with:
+          extra_nix_config: |
+            experimental-features = nix-command flakes
+
+      # Evaluates every output. The packages are fetch/build recipes, so a full
+      # `nix build` of all of them is minutes of compiling; forcing each
+      # derivation is what catches a broken recipe or a missing helper.
+      - name: Evaluate every package
+        run: |
+          nix eval --json .#packages.x86_64-linux \
+            --apply 'ps: builtins.mapAttrs (name: p: p.drvPath) ps' > /dev/null
+
+      - name: Nix flake
+        run: nix flake check -L

@@ -31,3 +31,12 @@ git subtree push --prefix=packages/ neg-pkgs main
 cd /etc/nixos
 git subtree pull --prefix=packages/ neg-pkgs main
 ```
+
+## Packages moved from /etc/nixos
+
+The Nix packages that used to live in the host configuration's `packages/`
+directory (the fetch-and-wrap recipes for the small CLI/GUI tools) live in
+`packages/` here and are wired in `overlays/migrated.nix`. `overlay.nix` returns
+their top-level attribute names as well as the `neg` namespace, so a consumer
+can address both. `lib/mkMeta.nix` and `lib/mkCraftApp.nix` are the shared
+builders those package files use.
