@@ -12,10 +12,14 @@ let
   call =
     path: extraArgs:
     final.callPackage (../packages + "/${path}") extraArgs;
+
+  # The same wrapper the host applied to these names (`rust-pkgs` lib/slim.nix):
+  # LTO, one codegen unit and stripped binaries.
+  rustSlim = inputs.rust-pkgs.lib.slim;
 in
 {
   neg = {
-    dnsglobe = call "dnsglobe" { }; # Global DNS propagation checker TUI — record answers on a world map
+    dnsglobe = rustSlim (call "dnsglobe" { }); # Global DNS propagation checker TUI — record answers on a world map
     flow = call "flow" { }; # Terminal dashboard for real-time network throughput
     geekbench-ai = call "geekbench-ai" { }; # Geekbench AI — on-device inference benchmark (proprietary binary)
     lsfg-vk = call "lsfg-vk" { }; # Vulkan frame-gen layer (LSFG on Linux; needs Lossless Scaling on Steam)
@@ -24,7 +28,7 @@ in
     nixard = call "nixard" { }; # TUI for exploring NixOS package closures / generating Nix declarations
     oryx = call "oryx" { }; # TUI for sniffing network traffic using eBPF (needs root + BTF kernel)
     terrascope = call "terrascope" { }; # Interactive world map for the terminal (braille; live weather/aircraft/earthquakes)
-    topowall = call "topowall" { }; # Topographic contour wallpapers from real elevation data (GPU render)
+    topowall = rustSlim (call "topowall" { }); # Topographic contour wallpapers from real elevation data (GPU render)
     tuigram = call "tuigram" { }; # Terminal UI Telegram client (npm package, Node 26 + node:ffi)
     uutils-sort = call "uutils-sort" { }; # uu_sort patched to compute ICU collation keys in parallel
   };
@@ -33,8 +37,8 @@ in
   audio-cpp = call "audio-cpp" { };
   camillaeq = call "camillaeq" { };
   camillagui = call "camillagui" { }; # web GUI for CamillaDSP
-  craft-anything = call "craft-anything" { }; # reverse-engineering workbench + rebuild assistant (desktop app, CLI, MCP server)
-  figcraft = call "figcraft" { }; # interface design and prototyping
+  craft-anything = rustSlim (call "craft-anything" { }); # reverse-engineering workbench + rebuild assistant (desktop app, CLI, MCP server)
+  figcraft = rustSlim (call "figcraft" { }); # interface design and prototyping
   hdspeconf = call "hdspeconf" { };
   hypr-kdeconnect-fix = call "hypr-kdeconnect-fix" { };
   hyprqt6engine = call "hyprqt6engine" { };
@@ -43,12 +47,12 @@ in
   llama-cpp-inkling = call "llama-cpp-inkling" { };
   matugen-themes = call "matugen-themes" { };
   open-audio-analyzer = call "open-audio-analyzer" { };
-  pw-audioshare = call "pw-audioshare" { };
+  pw-audioshare = rustSlim (call "pw-audioshare" { });
   pycamilladsp = call "pycamilladsp" { };
   pycamilladsp-plot = call "pycamilladsp-plot" { };
   rustgis = call "rustgis" { };
   sola-mpd = call "sola-mpd" { };
-  solidcraft = call "solidcraft" { }; # parametric 3D CAD + headless CLI/MCP
+  solidcraft = rustSlim (call "solidcraft" { }); # parametric 3D CAD + headless CLI/MCP
   swayimg = call "swayimg" { };
   tewi = call "tewi" { };
   tmd-top = call "tmd-top" { };

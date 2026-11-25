@@ -36,6 +36,13 @@
       url = "github:neg-serg/wl";
       flake = false;
     };
+    # The Rust crates' repository: its lib carries the slimming wrapper
+    # (`lib.slim`) that the moved Rust packages use, so the sizes stay what the
+    # host measured. The host makes this follow its own rust-pkgs input.
+    rust-pkgs = {
+      url = "github:neg-serg/rust-pkgs";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =
