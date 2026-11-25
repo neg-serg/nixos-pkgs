@@ -24,7 +24,6 @@ migrated
     let
       tools = import ./overlays/tools.nix inputs final prev;
       media = import ./overlays/media.nix inputs final prev;
-      dev = import ./overlays/dev.nix inputs final prev;
       gui = import ./overlays/gui.nix inputs final prev;
       functions = import ./overlays/functions.nix inputs final prev;
       fonts = import ./overlays/fonts.nix inputs final prev;
@@ -34,7 +33,6 @@ migrated
     (functions.neg or { })
     // (tools.neg or { })
     // (media.neg or { })
-    // (dev.neg or { })
     // (gui.neg or { })
     // aurPorted
     // disableChecks
